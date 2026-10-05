@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant UI as Dashboard
+  participant PHP as Laravel Service
+  participant R as Rust handler
+  participant C as External client
+  participant DB as PostgreSQL
+  UI->>PHP: GET /api/iss/last
+  PHP->>R: GET /last
+  R->>DB: repository latest_iss()
+  DB-->>R: TIMESTAMPTZ + JSONB
+  R-->>PHP: HTTP 200 JSON
+  PHP-->>UI: ViewModel / JSON
+  R->>C: retry + timeout + User-Agent (background fetch)

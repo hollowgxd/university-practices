@@ -1,0 +1,7 @@
+flowchart TD
+  P[Pascal legacy] --> W[Explicit container entrypoint + interval]
+  W --> CSV[CSV contract: recorded_at, voltage, temp, source_file]
+  CSV --> PG[(telemetry_legacy)]
+  W -. strangler replacement .-> CLI[Small Go/Rust/Python CLI]
+  CLI --> CSV
+  CLI --> PG

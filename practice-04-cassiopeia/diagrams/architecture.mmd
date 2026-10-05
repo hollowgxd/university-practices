@@ -1,0 +1,8 @@
+flowchart LR
+  browser[Browser / Dashboard] --> nginx[Nginx :8080]
+  nginx --> php[Laravel PHP-FPM]
+  php -->|HTTP adapter| rust[Rust Axum rust_iss]
+  rust --> pg[(PostgreSQL)]
+  rust --> api[ISS / NASA / SpaceX APIs]
+  legacy[Pascal legacy CLI] -->|COPY CSV| pg
+  rust --> cache[(space_cache table)]

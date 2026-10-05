@@ -1,0 +1,7 @@
+2026-10-05T00:00:00Z INFO rust_iss listening addr=0.0.0.0:3000
+2026-10-05T00:02:00Z INFO job=iss scheduled run completed
+2026-10-05T00:02:03Z INFO request path=/iss/trend status=200 trace_id=web-a1b2c3
+2026-10-05T00:02:05Z WARN job=osdr error="upstream returned HTTP 403" code=UPSTREAM_403
+
+Это образец формата структурированного вывода для отчёта, а не подмена реально
+полученного docker-лога; интеграционный запуск заблокирован отсутствием Docker.
