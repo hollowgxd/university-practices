@@ -1,0 +1,8 @@
+stateDiagram-v2
+    [*] --> CAR_GREEN
+    CAR_GREEN --> CAR_YELLOW: BUT pressed, >=3 s
+    CAR_YELLOW --> ALL_RED_TO_PEDESTRIANS: 2 s
+    ALL_RED_TO_PEDESTRIANS --> PED_GREEN: 1 s
+    PED_GREEN --> PED_BLINK: 7 s
+    PED_BLINK --> ALL_RED_TO_CARS: 4 s
+    ALL_RED_TO_CARS --> CAR_GREEN: 1 s
