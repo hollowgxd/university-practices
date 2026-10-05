@@ -8,6 +8,12 @@
 PDF-файлы заданий 4 и 4.1 содержат одинаковую методичку и одинаковые требования,
 поэтому решение оформлено одной папкой, а в отчёте покрыты оба документа.
 
+В отдельной ветке [`practice-04-go-legacy`](https://github.com/hollowgxd/university-practices/tree/practice-04-go-legacy/practice-04-cassiopeia)
+Pascal-модуль переписан на Go. Go-версия сохраняет исходный контракт: периодическую
+генерацию CSV `recorded_at,voltage,temp,source_file` и импорт в таблицу
+`telemetry_legacy` через `psql`, а Compose в этой ветке собирает и запускает уже
+новый контейнер `pascal-legacy-go`.
+
 ## 1. Что было в исходнике
 
 Cassiopeia — распределённый монолит из Rust-сервиса сбора космических данных,

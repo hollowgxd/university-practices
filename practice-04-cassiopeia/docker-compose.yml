@@ -58,7 +58,7 @@ services:
     ports: ["8080:80"]
     networks: [backend]
   pascal_legacy:
-    build: ./services/pascal-legacy
+    build: ./services/pascal-legacy-go
     environment:
       CSV_OUT_DIR: /data/csv
       GEN_PERIOD_SEC: ${PAS_LEGACY_PERIOD:-300}
