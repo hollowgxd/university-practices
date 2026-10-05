@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS orders (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  product VARCHAR(255) NOT NULL,
+  amount NUMERIC(12, 2) NOT NULL DEFAULT 0,
+  status VARCHAR(32) NOT NULL DEFAULT 'created',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS orders_user_id_idx ON orders (user_id);

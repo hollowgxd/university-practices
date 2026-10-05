@@ -1,0 +1,146 @@
+services:
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      USERS_SERVICE_URL: http://service_users:8000
+      ORDERS_SERVICE_URL: http://service_orders:8000
+      PAYMENTS_SERVICE_URL: http://service_payments:8000
+      REDIS_URL: redis://cache:6379
+      CACHE_TTL_SECONDS: 300
+    depends_on:
+      service_users:
+        condition: service_healthy
+      service_orders:
+        condition: service_healthy
+      service_payments:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    networks: [app-network]
+
+  service_users:
+    build: ./service_users
+    environment:
+      PORT: 8000
+      DATABASE_URL: postgresql://app_user:app_password@db_users:5432/users_db
+      REDIS_URL: redis://cache:6379
+      CACHE_TTL_SECONDS: 300
+    depends_on:
+      db_users:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/status >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [app-network]
+
+  service_orders:
+    build: ./service_orders
+    environment:
+      PORT: 8000
+      DATABASE_URL: postgresql://app_user:app_password@db_orders:5432/orders_db
+      USERS_SERVICE_URL: http://service_users:8000
+      REDIS_URL: redis://cache:6379
+      CACHE_TTL_SECONDS: 300
+    depends_on:
+      db_orders:
+        condition: service_healthy
+      service_users:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/orders/status >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [app-network]
+
+  service_payments:
+    build: ./service_payments
+    environment:
+      PORT: 8000
+      DATABASE_URL: postgresql://app_user:app_password@db_payments:5432/payments_db
+      ORDERS_SERVICE_URL: http://service_orders:8000
+      REDIS_URL: redis://cache:6379
+      CACHE_TTL_SECONDS: 300
+      PAYMENT_FAILURE_RATE: 0.2
+    depends_on:
+      db_payments:
+        condition: service_healthy
+      service_orders:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/payments/status >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [app-network]
+
+  db_users:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: users_db
+    volumes: [postgres_data_users:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d users_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [app-network]
+
+  db_orders:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: orders_db
+    volumes: [postgres_data_orders:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d orders_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [app-network]
+
+  db_payments:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: payments_db
+    volumes: [postgres_data_payments:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d payments_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [app-network]
+
+  cache:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [app-network]
+
+volumes:
+  postgres_data_users:
+  postgres_data_orders:
+  postgres_data_payments:
+
+networks:
+  app-network:
+    driver: bridge
