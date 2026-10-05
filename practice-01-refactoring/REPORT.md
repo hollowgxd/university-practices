@@ -53,5 +53,3 @@ Build succeeded. 0 Warning(s), 0 Error(s)
 dotnet build src/RPKApp1/RPKApp1.csproj
 dotnet run --project src/RPKApp1/RPKApp1.csproj
 ```
-
-Для проверки преподавателю достаточно открыть папку `practice-01-refactoring`: в ней есть исходный код, итоговый код и отчёт.
