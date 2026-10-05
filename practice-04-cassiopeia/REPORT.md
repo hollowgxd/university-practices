@@ -1,12 +1,7 @@
 # Практические работы №4 и №4.1 — рефакторинг Cassiopeia
 
 **Дисциплина:** оптимизация и рефакторинг программного кода.  
-**Вариант:** 1 (последняя цифра студенческого билета `0441`).  
-**Исходный проект:** [GitVerse: stasnorman/he-path-of-the-samurai](https://gitverse.ru/stasnorman/he-path-of-the-samurai).  
-**Результат:** [university-practices/practice-04-cassiopeia](https://github.com/hollowgxd/university-practices/tree/main/practice-04-cassiopeia).
-
-PDF-файлы заданий 4 и 4.1 содержат одинаковую методичку и одинаковые требования,
-поэтому решение оформлено одной папкой, а в отчёте покрыты оба документа.
+**Вариант:** 1 
 
 ## 1. Что было в исходнике
 
@@ -122,6 +117,3 @@ unit-тесты Haversine/RFC3339 и `tests/acceptance.sh` для всех со�
 CLI/daemon отсутствует. Это явно отражено в [матрице приёмки](evidence/acceptance-matrix.md),
 а образец формата логов помечен как образец, не как фактический запуск.
 
-Диаграммы находятся в [diagrams/](diagrams/), исходные файлы GitVerse сохранены в
-`original/` для сравнения; `.env` и реальные ключи из исходника намеренно не
-перенесены.
