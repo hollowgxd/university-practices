@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+# Wokwi uses an STM32F103C8 surrogate; the laboratory target remains STM32F107VCT6.
+firmware = "build/traffic-light.elf"
+elf = "build/traffic-light.elf"

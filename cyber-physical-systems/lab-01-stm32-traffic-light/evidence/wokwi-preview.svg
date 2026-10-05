@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+  <rect width="960" height="560" fill="#f5f7fb"/>
+  <text x="36" y="42" font-family="sans-serif" font-size="25" font-weight="bold" fill="#1f2937">Wokwi GPIO preview — STM32F103C8 surrogate</text>
+  <text x="36" y="70" font-family="sans-serif" font-size="15" fill="#b45309">Не скриншот платы STM32F107: визуальная схема эмуляции, target в проекте — STM32F107VCT6.</text>
+  <rect x="55" y="110" width="310" height="340" rx="16" fill="#24415f"/>
+  <rect x="105" y="180" width="210" height="200" rx="8" fill="#6b7280"/>
+  <text x="150" y="275" font-family="sans-serif" font-size="20" fill="white">STM32F103C8</text>
+  <text x="140" y="305" font-family="sans-serif" font-size="15" fill="#d1d5db">Cortex-M3 · 72 MHz</text>
+  <g font-family="monospace" font-size="15" fill="#111827">
+    <line x1="315" y1="205" x2="650" y2="155" stroke="#ef4444" stroke-width="3"/><text x="675" y="160">PB0 CAR_RED</text>
+    <line x1="315" y1="235" x2="650" y2="205" stroke="#d4a017" stroke-width="3"/><text x="675" y="210">PB1 CAR_YELLOW</text>
+    <line x1="315" y1="265" x2="650" y2="255" stroke="#16a34a" stroke-width="3"/><text x="675" y="260">PB2 CAR_GREEN</text>
+    <line x1="315" y1="295" x2="650" y2="305" stroke="#ef4444" stroke-width="3"/><text x="675" y="310">PB3 PED_RED</text>
+    <line x1="315" y1="325" x2="650" y2="355" stroke="#16a34a" stroke-width="3"/><text x="675" y="360">PB4 PED_GREEN</text>
+  </g>
+  <circle cx="650" cy="150" r="15" fill="#ef4444"/><circle cx="650" cy="200" r="15" fill="#facc15"/><circle cx="650" cy="250" r="15" fill="#22c55e"/><circle cx="650" cy="300" r="15" fill="#ef4444"/><circle cx="650" cy="350" r="15" fill="#22c55e"/>
+  <line x1="205" y1="380" x2="205" y2="485" stroke="#2563eb" stroke-width="3"/><circle cx="205" cy="500" r="22" fill="#60a5fa" stroke="#1d4ed8" stroke-width="4"/><text x="245" y="506" font-family="monospace" font-size="16" fill="#111827">PB5 BUT (key B)</text>
+  <text x="55" y="530" font-family="sans-serif" font-size="14" fill="#4b5563">Светодиоды подключены к общей земле; реальные резисторы обязательны на стенде.</text>
+</svg>

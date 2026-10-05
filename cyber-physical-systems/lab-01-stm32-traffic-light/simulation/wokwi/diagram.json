@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "author": "hollowgxd",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-stm32-bluepill", "id": "mcu", "top": 70, "left": 30, "attrs": {} },
+    { "type": "wokwi-led", "id": "car_red", "top": 55, "left": 350, "attrs": { "color": "red", "label": "CAR_RED" } },
+    { "type": "wokwi-led", "id": "car_yellow", "top": 125, "left": 350, "attrs": { "color": "yellow", "label": "CAR_YELLOW" } },
+    { "type": "wokwi-led", "id": "car_green", "top": 195, "left": 350, "attrs": { "color": "green", "label": "CAR_GREEN" } },
+    { "type": "wokwi-led", "id": "ped_red", "top": 265, "left": 350, "attrs": { "color": "red", "label": "PED_RED" } },
+    { "type": "wokwi-led", "id": "ped_green", "top": 335, "left": 350, "attrs": { "color": "green", "label": "PED_GREEN" } },
+    { "type": "wokwi-pushbutton", "id": "button", "top": 430, "left": 90, "attrs": { "color": "blue", "label": "BUT", "key": "B", "bounce": "0" } }
+  ],
+  "connections": [
+    [ "mcu:B0", "car_red:A", "red", [] ],
+    [ "mcu:B1", "car_yellow:A", "gold", [] ],
+    [ "mcu:B6", "car_green:A", "green", [] ],
+    [ "mcu:B3", "ped_red:A", "red", [] ],
+    [ "mcu:B4", "ped_green:A", "green", [] ],
+    [ "car_red:C", "mcu:GND.1", "black", [] ],
+    [ "car_yellow:C", "mcu:GND.1", "black", [] ],
+    [ "car_green:C", "mcu:GND.1", "black", [] ],
+    [ "ped_red:C", "mcu:GND.1", "black", [] ],
+    [ "ped_green:C", "mcu:GND.1", "black", [] ],
+    [ "mcu:B5", "button:1.l", "blue", [] ],
+    [ "button:2.l", "mcu:GND.2", "black", [] ]
+  ]
+}
